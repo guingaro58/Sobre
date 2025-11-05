@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Victor Guíngaro | QA Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1720;
+      --accent:#58a6ff;
+      --muted:#9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      background:linear-gradient(180deg,var(--bg) 0%, #090b0f 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* NAV */
+    .navbar{
+      background:rgba(11,15,20,0.6);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.02);
+    }
+    .navbar-brand{font-weight:700; color:var(--accent) !important}
+    .nav-link{color:#cfd8e3 !important}
+    .nav-link:hover{color:var(--accent) !important}
+
+    /* HERO */
+    header{
+      min-height:88vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:6rem 1rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      /* background-image:
+        linear-gradient(180deg, rgba(6,9,12,0.45), rgba(6,9,12,0.75)),
+        url("https://picsum.photos/seed/tech-1/1600/900"); */
+      background-size:cover;
+      background-position:center;
+      filter:contrast(1.05) saturate(0.9);
+      z-index:0;
+      transform:scale(1.03);
+    }
+    .hero-inner{position:relative; z-index:2; max-width:980px}
+    h1{font-size:2.4rem; margin:0; color:var(--accent); line-height:1.02}
+    p.lead{color:var(--muted); font-size:1.05rem; margin-top:1rem}
+
+    .cta{
+      margin-top:1.8rem;
+      display:inline-flex;
+      gap:.6rem;
+      align-items:center;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),#2b82ff);
+      border:0;
+      padding:.8rem 1.6rem;
+      border-radius:999px;
+      box-shadow:0 8px 30px rgba(88,166,255,0.12);
+    }
+    .btn-outline-light{
+      border-radius:999px;
+      padding:.7rem 1.4rem;
+      color:#e6eef6;
+      border-color:rgba(230,238,246,0.08);
+      background:transparent;
+    }
+
+    /* SECTIONS */
+    section{padding:6rem 0; position:relative}
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      padding:2.6rem;
+      border-radius:14px;
+      box-shadow:0 6px 30px rgba(2,6,23,0.6);
+    }
+    .img-block{
+      border-radius:12px;
+      min-height:320px;
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 8px 28px rgba(2,6,23,0.6);
+    }
+    .section-title{color:var(--accent); font-weight:700; font-size:1.35rem; margin-bottom:.6rem}
+    .muted{color:var(--muted)}
+
+    /* QUOTE */
+    .quote{
+      margin-top:1.4rem;
+      padding:1rem 1.2rem;
+      border-left:4px solid var(--accent);
+      color:#b9c7d8;
+      background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+      border-radius:8px;
+      font-style:italic;
+    }
+
+    /* GRID FLUID (no lists) */
+    .flow{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:1.6rem;
+      align-items:center;
+    }
+    @media(min-width:992px){
+      .flow{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* FOOTER */
+    footer{
+      padding:3.2rem 1rem;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* animation */
+    .reveal{opacity:0; transform:translateY(10px); transition:all .7s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1; transform:none}
+
+    /* fallback if external images blocked */
+    .img-block.fallback{
+      background-image: linear-gradient(135deg,#071126 0%, #0b1724 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-weight:600;
+      font-size:0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Victor Guíngaro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse justify-content-end" id="nav">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#sobre">Sobre</a>
+          <a class="nav-link" href="#visao">Visão</a>
+          <a class="nav-link" href="#contato">Contato</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner container reveal">
+      <h1>Mais que uma contratação.<br>Um investimento em qualidade.</h1>
+      <p class="lead">Sou <strong>Victor Guíngaro</strong>, profissional dedicado a elevar a confiança de produtos digitais por meio de qualidade técnica e visão de produto. Entrego clareza, prevenção e resultados.</p>
+
+      <div class="cta">
+        <a href="#contato" class="btn btn-primary">Vamos conversar</a>
+        <a href="#visao" class="btn btn-outline-light">Minha visão</a>
+      </div>
+
+      <div class="quote">“Qualidade não é somente encontrar defeitos. É evitar que eles aconteçam.”</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SOBRE - imagem + texto fluido, sem listas -->
+    <section id="sobre">
+      <div class="panel reveal">
+        <div class="flow">
+          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+            <div class="section-title">Trajetória</div>
+            <div class="muted">
+              O caminho começou pela curiosidade. Depois veio o método. Hoje entrego processos e práticas que transformam incógnitas em releases confiáveis.
+              Minhas abordagens combinam análise técnica, documentação pragmática e diálogo com times para garantir entregas mais seguras e previsíveis.
+            </div>
+            <div class="quote" style="margin:0">Produzo guias, resumos e repositórios que traduzem teoria em prática aplicável.</div>
+          </div>
+
+          <div class="img-block" role="img" aria-label="ilustração tecnologia"
+               style="background-image:url('https://picsum.photos/seed/qa-800/900/700');">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA - grande bloco visual, sem listas -->
+    <section id="visao">
+      <div class="panel reveal">
+        <div class="flow">
+          <div class="img-block" role="img" aria-label="time colaborando"
+               style="background-image:url('https://picsum.photos/seed/team-800/900/700');">
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+            <div class="section-title">Experiência & Mentoria</div>
+            <div class="muted">
+              Trabalhei sob mentoria da QA sênior Andressa em projetos reais. Atuei em refinamentos de requisitos, testes exploratórios e documentação de incidentes.
+              Essa vivência consolidou minha prática: qualidade começa no entendimento e na prevenção, não apenas na detecção.
+            </div>
+
+            <div class="section-title" style="margin-top:.8rem; font-size:1rem">Próximos passos</div>
+            <div class="muted">
+              Estudos contínuos em Python, fundamentos de automação e certificações previstas (CTFL / ISTQB). Meu compromisso é converter esses estudos em automações e ganhos de qualidade para times.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final e contatos -->
+    <section id="contato">
+      <div class="panel text-center reveal">
+        <div class="section-title">Vamos transformar qualidade em vantagem competitiva</div>
+        <div class="muted" style="max-width:820px; margin:0 auto">
+          Se procura alguém que una olhar técnico, empatia e foco em impacto, eu sou essa pessoa. Trabalho para reduzir riscos, melhorar métricas e elevar a confiança das entregas.
+        </div>
+
+        <div style="margin-top:1.8rem; display:flex;gap:0.6rem; justify-content:center; flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://linkedin.com/in/victor-guingaro" target="_blank"><i class="bi bi-linkedin"></i>&nbsp;LinkedIn</a>
+          <a class="btn btn-outline-light" href="mailto:guingaro58@gmail.com"><i class="bi bi-envelope"></i>&nbsp;E-mail</a>
+          <a class="btn btn-outline-light" href="https://github.com/" target="_blank"><i class="bi bi-github"></i>&nbsp;GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div style="max-width:900px;margin:0 auto">
+      <div style="margin-bottom:.6rem">“A qualidade é uma mentalidade construída todos os dias.”</div>
+      <small>&copy; 2025 Victor Guíngaro — Desenvolvido com foco em clareza e impacto.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // reveal on scroll (light-weight)
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold: 0.12});
+    reveals.forEach(r => io.observe(r));
+  </script>
+</body>
+</html>
