@@ -7,157 +7,211 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:#0f1720;
-      --accent:#58a6ff;
-      --muted:#9aa6b2;
-      --glass: rgba(255,255,255,0.03);
+      --bg:#090c12;
+      --card:#121722;
+      --accent:#00aaff;
+      --accent2:#00ffd5;
+      --text:#eaf1ff;
+      --muted:#9aa8be;
+      --radius:18px;
     }
-    html,body{height:100%}
+
+    *{box-sizing:border-box;scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #090b0f 100%);
-      color:#e6eef6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      scroll-behavior:smooth;
+      font-family:'Inter',system-ui,Segoe UI,Roboto;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
 
     /* NAV */
     .navbar{
-      background:rgba(11,15,20,0.6);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid rgba(255,255,255,0.02);
+      background:rgba(9,12,18,0.8);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      transition:.3s;
     }
-    .navbar-brand{font-weight:700; color:var(--accent) !important}
-    .nav-link{color:#cfd8e3 !important}
-    .nav-link:hover{color:var(--accent) !important}
+    .navbar-brand{font-weight:700;color:var(--accent)!important}
+    .nav-link{color:var(--muted)!important;margin:0 .6rem}
+    .nav-link:hover{color:var(--accent)!important}
 
-    /* HERO */
+    /* HEADER */
     header{
-      min-height:88vh;
+      min-height:90vh;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:6rem 1rem;
-      position:relative;
-      overflow:hidden;
+      padding:6rem 1rem 3rem;
+      background:radial-gradient(circle at 50% 0%,rgba(0,170,255,0.15),transparent 70%);
     }
-    .hero-bg{
-      position:absolute;
-      inset:0;
-      /* background-image:
-        linear-gradient(180deg, rgba(6,9,12,0.45), rgba(6,9,12,0.75)),
-        url("https://picsum.photos/seed/tech-1/1600/900"); */
-      background-size:cover;
-      background-position:center;
-      filter:contrast(1.05) saturate(0.9);
-      z-index:0;
-      transform:scale(1.03);
+    h1{
+      font-size:2.8rem;
+      font-weight:700;
+      color:var(--accent);
+      text-shadow:0 0 25px rgba(0,170,255,0.3);
     }
-    .hero-inner{position:relative; z-index:2; max-width:980px}
-    h1{font-size:2.4rem; margin:0; color:var(--accent); line-height:1.02}
-    p.lead{color:var(--muted); font-size:1.05rem; margin-top:1rem}
-
-    .cta{
-      margin-top:1.8rem;
-      display:inline-flex;
-      gap:.6rem;
-      align-items:center;
+    p.lead{
+      color:var(--muted);
+      font-size:1.2rem;
+      margin:1rem auto 2.2rem;
+      max-width:680px;
     }
     .btn-primary{
-      background:linear-gradient(90deg,var(--accent),#2b82ff);
-      border:0;
-      padding:.8rem 1.6rem;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      border:none;
       border-radius:999px;
-      box-shadow:0 8px 30px rgba(88,166,255,0.12);
+      color:#000;
+      font-weight:600;
+      padding:.9rem 1.9rem;
+      transition:.3s;
     }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(0,255,213,0.3)}
     .btn-outline-light{
       border-radius:999px;
-      padding:.7rem 1.4rem;
-      color:#e6eef6;
-      border-color:rgba(230,238,246,0.08);
-      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      color:var(--text);
+      padding:.9rem 1.8rem;
+    }
+    .btn-outline-light:hover{background:rgba(255,255,255,0.05);color:var(--accent2)}
+
+    /* SECTION BASE */
+    section{padding:6rem 0}
+    .section-title{
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:var(--accent2);
+      font-size:1.2rem;
+      font-weight:700;
+      margin-bottom:2rem;
+      text-align:center;
     }
 
-    /* SECTIONS */
-    section{padding:6rem 0; position:relative}
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.03);
-      padding:2.6rem;
-      border-radius:14px;
-      box-shadow:0 6px 30px rgba(2,6,23,0.6);
+    /* TRAJETÓRIA */
+    #trajetoria{
+      background:linear-gradient(180deg,rgba(0,255,213,0.05),transparent);
     }
-    .img-block{
-      border-radius:12px;
-      min-height:320px;
-      background-size:cover;
-      background-position:center;
-      box-shadow:0 8px 28px rgba(2,6,23,0.6);
+    .timeline{
+      position:relative;
+      margin:0 auto;
+      max-width:900px;
+      padding-left:2rem;
     }
-    .section-title{color:var(--accent); font-weight:700; font-size:1.35rem; margin-bottom:.6rem}
-    .muted{color:var(--muted)}
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:12px;
+      top:0;
+      width:3px;
+      height:100%;
+      background:linear-gradient(var(--accent),var(--accent2));
+      border-radius:2px;
+    }
+    .step{
+      position:relative;
+      margin-bottom:2.5rem;
+      padding-left:2rem;
+    }
+    .step::before{
+      content:"";
+      position:absolute;
+      left:-7px;
+      top:.3rem;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 10px rgba(0,255,213,0.4);
+    }
+    .step h5{color:var(--accent);margin-bottom:.4rem;font-weight:600}
+    .step p{color:var(--muted);margin:0}
 
-    /* QUOTE */
-    .quote{
-      margin-top:1.4rem;
-      padding:1rem 1.2rem;
-      border-left:4px solid var(--accent);
-      color:#b9c7d8;
-      background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
-      border-radius:8px;
-      font-style:italic;
+    /* SKILLS */
+    #skills{
+      background:linear-gradient(180deg,rgba(0,170,255,0.05),transparent);
     }
-
-    /* GRID FLUID (no lists) */
-    .flow{
+    .skills-grid{
       display:grid;
-      grid-template-columns:1fr;
-      gap:1.6rem;
-      align-items:center;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:1.8rem;
     }
-    @media(min-width:992px){
-      .flow{grid-template-columns:repeat(2,1fr)}
+    .skill-card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:var(--radius);
+      padding:2.5rem 2rem;
+      text-align:center;
+      transition:all .3s ease;
+    }
+    .skill-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 25px rgba(0,170,255,0.15);
+      border-color:rgba(0,255,213,0.15);
+    }
+    .skill-card i{
+      font-size:2.2rem;
+      color:var(--accent2);
+      margin-bottom:.8rem;
+    }
+    .skill-card h5{color:var(--accent);margin-bottom:.5rem;font-weight:600}
+    .skill-card p{color:var(--muted);font-size:.95rem}
+
+    /* VISÃO */
+    #visao .quote{
+      font-style:italic;
+      color:#bcd0e4;
+      margin:2rem auto;
+      max-width:700px;
+      text-align:center;
+      border-left:4px solid var(--accent);
+      padding:1rem 1.2rem;
+      background:rgba(255,255,255,0.02);
+      border-radius:10px;
+    }
+
+    /* CONTATO */
+    #contato{
+      text-align:center;
+    }
+    #contato .contact-box{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:var(--radius);
+      padding:3rem 2rem;
+      box-shadow:0 0 40px rgba(0,170,255,0.1);
+      max-width:700px;
+      margin:0 auto;
     }
 
     /* FOOTER */
     footer{
-      padding:3.2rem 1rem;
+      padding:3rem 1rem;
       text-align:center;
       color:var(--muted);
-      border-top:1px solid rgba(255,255,255,0.02);
+      border-top:1px solid rgba(255,255,255,0.05);
+      font-size:.9rem;
     }
 
-    /* animation */
-    .reveal{opacity:0; transform:translateY(10px); transition:all .7s cubic-bezier(.2,.9,.3,1)}
+    /* ANIMATION */
+    .reveal{opacity:0; transform:translateY(30px); transition:all .8s ease}
     .reveal.visible{opacity:1; transform:none}
-
-    /* fallback if external images blocked */
-    .img-block.fallback{
-      background-image: linear-gradient(135deg,#071126 0%, #0b1724 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      font-weight:600;
-      font-size:0.95rem;
-    }
   </style>
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Victor Guíngaro</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse justify-content-end" id="nav">
         <div class="navbar-nav">
-          <a class="nav-link" href="#sobre">Sobre</a>
+          <a class="nav-link" href="#trajetoria">Trajetória</a>
+          <a class="nav-link" href="#skills">Competências</a>
           <a class="nav-link" href="#visao">Visão</a>
           <a class="nav-link" href="#contato">Contato</a>
         </div>
@@ -166,101 +220,119 @@
   </nav>
 
   <header>
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-inner container reveal">
-      <h1>Mais que uma contratação.<br>Um investimento em qualidade.</h1>
-      <p class="lead">Sou <strong>Victor Guíngaro</strong>, profissional dedicado a elevar a confiança de produtos digitais por meio de qualidade técnica e visão de produto. Entrego clareza, prevenção e resultados.</p>
-
-      <div class="cta">
-        <a href="#contato" class="btn btn-primary">Vamos conversar</a>
-        <a href="#visao" class="btn btn-outline-light">Minha visão</a>
+    <div class="container reveal">
+      <h1>Mais que testes.<br>Construindo confiança digital.</h1>
+      <p class="lead">
+        Sou <strong>Victor Guíngaro</strong>, QA focado em elevar produtos através da combinação de estratégia, técnica e empatia.  
+        Cada release deve gerar segurança - não dúvidas.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="#contato" class="btn btn-primary">Fale comigo</a>
+        <a href="#skills" class="btn btn-outline-light">Minhas habilidades</a>
       </div>
-
-      <div class="quote">“Qualidade não é somente encontrar defeitos. É evitar que eles aconteçam.”</div>
     </div>
   </header>
 
-  <main class="container">
-
-    <!-- SOBRE - imagem + texto fluido, sem listas -->
-    <section id="sobre">
-      <div class="panel reveal">
-        <div class="flow">
-          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
-            <div class="section-title">Trajetória</div>
-            <div class="muted">
-              O caminho começou pela curiosidade. Depois veio o método. Hoje entrego processos e práticas que transformam incógnitas em releases confiáveis.
-              Minhas abordagens combinam análise técnica, documentação pragmática e diálogo com times para garantir entregas mais seguras e previsíveis.
-            </div>
-            <div class="quote" style="margin:0">Produzo guias, resumos e repositórios que traduzem teoria em prática aplicável.</div>
+  <main>
+    <section id="trajetoria">
+      <div class="container reveal">
+        <div class="section-title">Trajetória Profissional</div>
+        <div class="timeline">
+          <div class="step">
+            <h5>Início</h5>
+            <p>Curiosidade por qualidade e usabilidade me levou ao mundo do QA, buscando entender o “porquê” dos erros antes mesmo de encontrá-los.</p>
           </div>
-
-          <div class="img-block" role="img" aria-label="ilustração tecnologia"
-               style="background-image:url('https://picsum.photos/seed/qa-800/900/700');">
+          <div class="step">
+            <h5>Formação Técnica</h5>
+            <p>Estudos em testes manuais, documentação de incidentes e refinamento de requisitos - aprendendo com mentoria direta de profissionais experientes.</p>
+          </div>
+          <div class="step">
+            <h5>Prática em Projetos Reais</h5>
+            <p>Atuação em squads multidisciplinares, testes exploratórios e definição de métricas de qualidade orientadas a produto.</p>
+          </div>
+          <div class="step">
+            <h5>Hoje</h5>
+            <p>Foco em processos e prevenção. Qualidade como cultura, não etapa. Trabalhando para tornar a entrega mais previsível e sustentável.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIÊNCIA - grande bloco visual, sem listas -->
+    <section id="skills">
+      <div class="container reveal">
+        <div class="section-title">Competências Técnicas</div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <i class="bi bi-bug"></i>
+            <h5>Testes Exploratórios</h5>
+            <p>Detecção inteligente de falhas através de cenários reais e empatia pelo usuário final.</p>
+          </div>
+          <div class="skill-card">
+            <i class="bi bi-diagram-3"></i>
+            <h5>Fluxos e Casos de Teste</h5>
+            <p>Criação de documentações leves, claras e rastreáveis para ciclos ágeis de desenvolvimento.</p>
+          </div>
+          <div class="skill-card">
+            <i class="bi bi-gear"></i>
+            <h5>Automação</h5>
+            <p>Estudos em Selenium e Cypress, com visão de integração contínua e pipelines de QA.</p>
+          </div>
+          <div class="skill-card">
+            <i class="bi bi-lightning-charge"></i>
+            <h5>Prevenção de Defeitos</h5>
+            <p>Qualidade desde o refinamento. Envolvimento proativo com times para evitar falhas antes do código.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="visao">
-      <div class="panel reveal">
-        <div class="flow">
-          <div class="img-block" role="img" aria-label="time colaborando"
-               style="background-image:url('https://picsum.photos/seed/team-800/900/700');">
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
-            <div class="section-title">Experiência & Mentoria</div>
-            <div class="muted">
-              Trabalhei sob mentoria da QA sênior Andressa em projetos reais. Atuei em refinamentos de requisitos, testes exploratórios e documentação de incidentes.
-              Essa vivência consolidou minha prática: qualidade começa no entendimento e na prevenção, não apenas na detecção.
-            </div>
-
-            <div class="section-title" style="margin-top:.8rem; font-size:1rem">Próximos passos</div>
-            <div class="muted">
-              Estudos contínuos em Python, fundamentos de automação e certificações previstas (CTFL / ISTQB). Meu compromisso é converter esses estudos em automações e ganhos de qualidade para times.
-            </div>
-          </div>
-        </div>
+      <div class="container reveal">
+        <div class="section-title">Minha Visão</div>
+        <p class="lead text-center" style="max-width:750px;margin:0 auto;">
+          Qualidade é uma mentalidade.  
+          É alinhar a experiência do usuário à integridade do produto, sem deixar a eficiência de lado.  
+          Minha missão é ajudar times a entregar software com propósito e confiança.
+        </p>
+        <div class="quote">“Boas práticas não são burocracia — são o que nos permite inovar sem medo.”</div>
       </div>
     </section>
 
-    <!-- CTA final e contatos -->
     <section id="contato">
-      <div class="panel text-center reveal">
-        <div class="section-title">Vamos transformar qualidade em vantagem competitiva</div>
-        <div class="muted" style="max-width:820px; margin:0 auto">
-          Se procura alguém que una olhar técnico, empatia e foco em impacto, eu sou essa pessoa. Trabalho para reduzir riscos, melhorar métricas e elevar a confiança das entregas.
-        </div>
-
-        <div style="margin-top:1.8rem; display:flex;gap:0.6rem; justify-content:center; flex-wrap:wrap">
-          <a class="btn btn-primary" href="https://linkedin.com/in/victor-guingaro" target="_blank"><i class="bi bi-linkedin"></i>&nbsp;LinkedIn</a>
-          <a class="btn btn-outline-light" href="mailto:guingaro58@gmail.com"><i class="bi bi-envelope"></i>&nbsp;E-mail</a>
-          <a class="btn btn-outline-light" href="https://github.com/" target="_blank"><i class="bi bi-github"></i>&nbsp;GitHub</a>
+      <div class="container reveal">
+        <div class="section-title">Contato</div>
+        <div class="contact-box">
+          <p class="muted mb-4">Aberto a oportunidades de colaboração, projetos e trocas sobre qualidade e produto.</p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a class="btn btn-primary" href="https://linkedin.com/in/victor-guingaro" target="_blank">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a class="btn btn-outline-light" href="mailto:guingaro58@gmail.com">
+              <i class="bi bi-envelope"></i> E-mail
+            </a>
+            <a class="btn btn-outline-light" href="https://github.com/guingaro58" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <div style="max-width:900px;margin:0 auto">
-      <div style="margin-bottom:.6rem">“A qualidade é uma mentalidade construída todos os dias.”</div>
-      <small>&copy; 2025 Victor Guíngaro — Desenvolvido com foco em clareza e impacto.</small>
-    </div>
+    “A qualidade é uma cultura, não uma tarefa.”  
+    <br><small>&copy; 2025 Victor Guíngaro — Design e código com propósito.</small>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // reveal on scroll (light-weight)
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
+    const reveals=document.querySelectorAll('.reveal');
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible');
       });
-    }, {threshold: 0.12});
-    reveals.forEach(r => io.observe(r));
+    },{threshold:0.1});
+    reveals.forEach(r=>io.observe(r));
   </script>
 </body>
 </html>
